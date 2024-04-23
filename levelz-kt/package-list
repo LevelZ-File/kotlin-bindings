@@ -1,0 +1,13 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:xyz.calcugames.levelz////PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/index.html
+$dokka.location:xyz.calcugames.levelz/Dimension.THREE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}levelz-kt/xyz.calcugames.levelz/-dimension/-t-h-r-e-e/index.html
+$dokka.location:xyz.calcugames.levelz/Dimension.TWO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}levelz-kt/xyz.calcugames.levelz/-dimension/-t-w-o/index.html
+$dokka.location:xyz.calcugames.levelz/Dimension///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-dimension/index.html
+$dokka.location:xyz.calcugames.levelz/Dimension/entries/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-dimension/entries.html
+$dokka.location:xyz.calcugames.levelz/Dimension/is2D/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-dimension/is2-d.html
+$dokka.location:xyz.calcugames.levelz/Dimension/is3D/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-dimension/is3-d.html
+$dokka.location:xyz.calcugames.levelz/Dimension/valueOf/#kotlin.String/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-dimension/value-of.html
+$dokka.location:xyz.calcugames.levelz/Dimension/values/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-dimension/values.html
+xyz.calcugames.levelz
+

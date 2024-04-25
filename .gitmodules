@@ -1,0 +1,3 @@
+[submodule "src/commonTest/resources/examples"]
+	path = src/commonTest/resources/examples
+	url = https://github.com/LevelZ-File/examples

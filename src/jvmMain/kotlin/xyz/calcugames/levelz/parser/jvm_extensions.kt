@@ -5,11 +5,12 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.Reader
+import java.util.stream.Collectors
 import kotlin.random.Random
 
 internal fun lines(r: Reader): List<String> {
     val reader = BufferedReader(r)
-    val lines = reader.lines().toList()
+    val lines = reader.lines().collect(Collectors.toList())
 
     try {
         reader.close()

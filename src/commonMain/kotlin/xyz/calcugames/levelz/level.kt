@@ -35,6 +35,13 @@ enum class Dimension {
     val is3D: Boolean
         get() = this == THREE
 
+    /**
+     * Gets the default coordinate for this dimension.
+     * @return Default Coordinate
+     */
+    val defaultCoordinate: Coordinate
+        get() = if (is2D) Coordinate2D(0, 0) else Coordinate3D(0, 0, 0)
+
 }
 
 /**

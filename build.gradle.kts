@@ -18,7 +18,25 @@ repositories {
 kotlin {
     jvm()
     js {
-        browser()
+        browser {
+            testTask {
+                useKarma {
+                    useFirefoxHeadless()
+                }
+            }
+        }
         nodejs()
+    }
+
+    sourceSets {
+        commonTest.dependencies {
+            implementation(kotlin("test"))
+        }
+    }
+}
+
+tasks {
+    clean {
+        delete("kotlin-js-store")
     }
 }

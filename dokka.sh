@@ -23,5 +23,5 @@ cp -Rfv ./docs/* ./
 rm -rf ./docs
 
 git add .
-git commit -m "Update JavaDocs ($1)"
+git commit -m "Update Dokka ($1)"
 git push -f origin gh-pages

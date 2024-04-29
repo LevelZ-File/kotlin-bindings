@@ -27,8 +27,8 @@ Maven
 
 <dependencies>
     <dependency>
-        <groupId>com.github.LevelZ-File</groupId>
-        <artifactId>kotlin-bindings</artifactId>
+        <groupId>com.github.LevelZ-File.kotlin-bindings</groupId>
+        <artifactId>levelz-kt</artifactId>
         <version>[VERSION]</version>
     </dependency>
 </dependencies>
@@ -42,7 +42,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.LevelZ-File:kotlin-bindings:[VERSION]'
+    implementation 'com.github.LevelZ-File.kotlin-bindings:levelz-kt:[VERSION]'
 }
 ```
 
@@ -54,7 +54,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.LevelZ-File:kotlin-bindings:[VERSION]")
+    implementation("com.github.LevelZ-File.kotlin-bindings:levelz-kt:[VERSION]")
+
+    // Kotlin Multiplatform
+    commonMainImplementation("com.github.LevelZ-File.kotlin-bindings:levelz-kt:[VERSION")
 }
 ```
 

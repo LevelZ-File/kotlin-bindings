@@ -14,20 +14,23 @@ the JVM. This project is designed to be implemented on Kotlin Multiplatform.
 
 ### Download
 
-Maven
 ```xml
-<!-- Add JitPack Repository -->
+<!-- Add Calculus Games Repository -->
 
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
+        <id>calculus-releases</id>
+        <url>https://repo.calcugames.xyz/repository/maven-releases/</url>
+    </repository>
+    <repository>
+        <id>calculus-snapshots</id>
+        <url>https://repo.calcugames.xyz/repository/maven-snapshots/</url>
     </repository>
 </repositories>
 
 <dependencies>
     <dependency>
-        <groupId>com.github.LevelZ-File.kotlin-bindings</groupId>
+        <groupId>xyz.calcugames</groupId>
         <artifactId>levelz-kt</artifactId>
         <version>[VERSION]</version>
     </dependency>
@@ -36,28 +39,27 @@ Maven
 
 Gradle (Groovy)
 ```groovy
-// Add JitPack Repository
+// Add Calculus Games Repositories
 repositories {
-    maven { url 'https://jitpack.io' }
+    maven { url 'https://repo.calcugames.xyz/repository/maven-releases/' }
+    maven { url 'https://repo.calcugames.xyz/repository/maven-snapshots/' }
 }
 
 dependencies {
-    implementation 'com.github.LevelZ-File.kotlin-bindings:levelz-kt:[VERSION]'
+    implementation 'xyz.calcugames:levelz-kt:[VERSION]'
 }
 ```
 
 Gradle (Kotlin DSL)
 ```kts
-// Add JitPack Repository
+// Add Calculus Games Repository
 repositories {
-    maven("https://jitpack.io")
+    maven("https://repo.calcugames.xyz/repository/maven-releases/")
+    maven("https://repo.calcugames.xyz/repository/maven-snapshots/")
 }
 
 dependencies {
-    implementation("com.github.LevelZ-File.kotlin-bindings:levelz-kt:[VERSION]")
-
-    // Kotlin Multiplatform
-    commonMainImplementation("com.github.LevelZ-File.kotlin-bindings:levelz-kt:[VERSION")
+    implementation("xyz.calcugames:levelz-kt:[VERSION]")
 }
 ```
 

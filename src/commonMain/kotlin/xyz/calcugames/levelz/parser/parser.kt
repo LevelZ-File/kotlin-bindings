@@ -138,6 +138,7 @@ internal fun split(file: Array<String>): Array<Array<String>> {
 internal fun readHeaders(headers: Array<String>): MutableMap<String, String> {
     val headers0 = mutableMapOf<String, String>()
     for (l in headers) {
+        if (l.isBlank()) continue
         if (!l.startsWith("@")) throw ParseException("Invalid LevelZ Header: $l")
         val parts = l.split("\\s".toRegex(), limit = 2).toTypedArray()
 
@@ -147,7 +148,7 @@ internal fun readHeaders(headers: Array<String>): MutableMap<String, String> {
     }
 
     if (!headers0.containsKey("type")) throw MissingHeaderException("Missing Dimension Type (@type)")
-    if (!headers0.containsKey("spawn")) throw MissingHeaderException( "Missing Level Spawnpoint (@spawn)")
+    if (!headers0.containsKey("spawn")) throw MissingHeaderException("Missing Level Spawnpoint (@spawn)")
 
     return headers0
 }
@@ -287,6 +288,7 @@ internal fun parse(file: Array<String>, seed: Random): Level {
 
     val blocks = mutableSetOf<LevelObject>()
     for (line in split[1]) {
+        if (line.isEmpty()) continue
         if (line.equals(END, ignoreCase = true)) break
 
         if (is2D) {
@@ -325,4 +327,15 @@ const val END = "end"
  */
 fun parseLevel(level: String, seed: Random = Random, lineSeparator: String = "\n"): Level {
     return parse(level.split(lineSeparator).toTypedArray(), seed)
+}
+
+/**
+ * Parses a LevelZ file from the given string.
+ * @param level Level Lines
+ * @param seed Random Seed
+ * @return Parsed Level
+ * @throws ParseException If the LevelZ file is malformed
+ */
+fun parseLevel(level: Iterable<String>, seed: Random = Random): Level {
+    return parse(level.toList().toTypedArray(), seed)
 }

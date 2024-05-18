@@ -69,6 +69,7 @@ $dokka.location:xyz.calcugames.levelz.parser//HEADER_END/#/PointingToDeclaration
 $dokka.location:xyz.calcugames.levelz.parser//parseLevel/#java.io.InputStream#kotlin.random.Random/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/parse-level.html
 $dokka.location:xyz.calcugames.levelz.parser//parseLevel/#java.io.Reader#kotlin.random.Random/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/parse-level.html
 $dokka.location:xyz.calcugames.levelz.parser//parseLevel/#kotlin.String#kotlin.random.Random#kotlin.String/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/parse-level.html
+$dokka.location:xyz.calcugames.levelz.parser//parseLevel/#kotlin.collections.Iterable[kotlin.String]#kotlin.random.Random/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/parse-level.html
 $dokka.location:xyz.calcugames.levelz.parser/MalformedPointException.Companion///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/-malformed-point-exception/-companion/index.html
 $dokka.location:xyz.calcugames.levelz.parser/MalformedPointException///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/-malformed-point-exception/index.html
 $dokka.location:xyz.calcugames.levelz.parser/MalformedPointException/MalformedPointException/#kotlin.String?#kotlin.Throwable?/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.parser/-malformed-point-exception/-malformed-point-exception.html

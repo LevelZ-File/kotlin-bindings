@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "xyz.calcugames"
-version = "0.1.0-SNAPSHOT"
+version = "0.1.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -43,10 +43,7 @@ tasks {
 
 publishing {
     publications {
-        create<MavenPublication>("maven") {
-            groupId = "xyz.calcugames"
-            artifactId = "levelz-kt"
-
+        getByName<MavenPublication>("kotlinMultiplatform") {
             pom {
                 name = "LevelZ Kotlin API"
                 description = "The Kotlin API for LevelZ"
@@ -65,8 +62,6 @@ publishing {
                     url = "https://github.com/LevelZ-File/kotlin-bindings"
                 }
             }
-
-            from(components["java"])
         }
     }
 

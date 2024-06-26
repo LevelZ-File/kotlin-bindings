@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "xyz.calcugames"
-version = "0.1.1-SNAPSHOT"
+version = "0.1.2-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -27,6 +27,9 @@ kotlin {
         }
         nodejs()
     }
+
+    iosX64()
+    iosArm64()
 
     sourceSets {
         commonTest.dependencies {

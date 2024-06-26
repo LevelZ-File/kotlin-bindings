@@ -29,6 +29,17 @@ class TestLevelParser {
         val l3 = parseLevel(f3) as Level3D
 
         assertEquals(l3.spawn, Coordinate3D(0, 0, 0))
+
+        val f4 = TestLevelParser::class.java.getResourceAsStream("/examples/2D/volcano/4.lvlz") ?: throw Exception("File not found")
+        val l4 = parseLevel(f4) as Level2D
+
+        assertEquals(l4.scroll, Scroll.NONE)
+        assertEquals(l4.spawn, Coordinate2D(5, 1))
+
+        val f5 = TestLevelParser::class.java.getResourceAsStream("/examples/3D/grasslands/3.lvlz") ?: throw Exception("File not found")
+        val l5 = parseLevel(f5) as Level3D
+
+        assertEquals(l5.spawn, Coordinate3D(0, 10, 0))
     }
 
 }

@@ -120,6 +120,8 @@ jobs:
           cache: 'gradle'
       - name: Change Permissions
         run: chmod +x ./gradlew
+      - name: Install Firefox
+        uses: browser-actions/setup-firefox@v1
       - name: Publish to Repository
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}

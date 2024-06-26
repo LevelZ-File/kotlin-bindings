@@ -1,1 +1,1 @@
-sourceset_dependencies='{":dokkaHtml/commonMain":[],":dokkaHtml/jsMain":[":dokkaHtml/commonMain"],":dokkaHtml/jvmMain":[":dokkaHtml/commonMain"]}'
+sourceset_dependencies='{":dokkaHtml/appleMain":[":dokkaHtml/nativeMain"],":dokkaHtml/commonMain":[],":dokkaHtml/iosArm64Main":[":dokkaHtml/iosMain"],":dokkaHtml/iosMain":[":dokkaHtml/appleMain"],":dokkaHtml/iosX64Main":[":dokkaHtml/iosMain"],":dokkaHtml/jsMain":[":dokkaHtml/commonMain"],":dokkaHtml/jvmMain":[":dokkaHtml/commonMain"],":dokkaHtml/nativeMain":[":dokkaHtml/commonMain"]}'

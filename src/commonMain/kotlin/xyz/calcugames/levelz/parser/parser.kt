@@ -291,12 +291,15 @@ internal fun parse(file: Array<String>, seed: Random): Level {
         if (line.isEmpty()) continue
         if (line.equals(END, ignoreCase = true)) break
 
+        val ci = line.indexOf('#')
+        val line0 = (if (ci != -1) line.substring(0, ci) else line).trim()
+
         if (is2D) {
-            val blocks2D = read2DLine(line, seed)
+            val blocks2D = read2DLine(line0, seed)
             for (c in blocks2D.second)
                 blocks.add(LevelObject(blocks2D.first, c))
         } else {
-            val blocks3D = read3DLine(line, seed)
+            val blocks3D = read3DLine(line0, seed)
             for (c in blocks3D.second)
                 blocks.add(LevelObject(blocks3D.first, c))
         }

@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "xyz.calcugames"
-version = "0.1.2-SNAPSHOT"
+version = "0.2.1-SNAPSHOT"
 
 repositories {
     mavenCentral()

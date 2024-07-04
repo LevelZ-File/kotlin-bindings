@@ -142,7 +142,7 @@ class Level2D : Level {
      * Creates an empty 2D Level.
      */
     constructor() {
-        this.spawn = Coordinate2D(0, 0)
+        this.spawn = Coordinate2D.zero
         this.scroll = Scroll.NONE
     }
 
@@ -151,8 +151,8 @@ class Level2D : Level {
      * @param headers Level Headers
      */
     constructor(headers: Map<String, String>) : super(headers) {
-        this.spawn = Coordinate2D.fromString((headers["spawn"])!!)
-        this.scroll = Scroll.valueOf(headers["scroll"]!!.replace('-', '_').uppercase())
+        this.spawn = Coordinate2D.fromString(headers["spawn"] ?: "[0, 0]")
+        this.scroll = Scroll.valueOf(headers["scroll"]?.replace('-', '_')?.uppercase() ?: "NONE")
     }
 
     /**

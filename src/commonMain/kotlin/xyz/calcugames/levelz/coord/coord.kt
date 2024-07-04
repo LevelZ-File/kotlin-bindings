@@ -80,6 +80,37 @@ class Coordinate2D(
     override val dimension: Dimension
         get() = Dimension.TWO
 
+    operator fun component1(): Double = x
+    operator fun component2(): Double = y
+
+    operator fun plus(other: Coordinate2D): Coordinate2D = Coordinate2D(x + other.x, y + other.y)
+    operator fun plus(scalar: Double): Coordinate2D = Coordinate2D(x + scalar, y + scalar)
+    operator fun plusAssign(other: Coordinate2D) {
+        x += other.x
+        y += other.y
+    }
+
+    operator fun minus(other: Coordinate2D): Coordinate2D = Coordinate2D(x - other.x, y - other.y)
+    operator fun minus(scalar: Double): Coordinate2D = Coordinate2D(x - scalar, y - scalar)
+    operator fun minusAssign(other: Coordinate2D) {
+        x -= other.x
+        y -= other.y
+    }
+
+    operator fun times(other: Coordinate2D): Coordinate2D = Coordinate2D(x * other.x, y * other.y)
+    operator fun times(scalar: Double): Coordinate2D = Coordinate2D(x * scalar, y * scalar)
+    operator fun timesAssign(other: Coordinate2D) {
+        x *= other.x
+        y *= other.y
+    }
+
+    operator fun div(other: Coordinate2D): Coordinate2D = Coordinate2D(x / other.x, y / other.y)
+    operator fun div(scalar: Double): Coordinate2D = Coordinate2D(x / scalar, y / scalar)
+    operator fun divAssign(other: Coordinate2D) {
+        x /= other.x
+        y /= other.y
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null) return false
@@ -101,6 +132,11 @@ class Coordinate2D(
     }
 
     companion object {
+        /**
+         * A 2D Coordinate at the origin.
+         */
+        val zero = Coordinate2D(0, 0)
+
         /**
          * Parses a 2D Coordinate from a string.
          * @param point String
@@ -162,6 +198,42 @@ class Coordinate3D(
     override val dimension: Dimension
         get() = Dimension.THREE
 
+    operator fun component1(): Double = x
+    operator fun component2(): Double = y
+    operator fun component3(): Double = z
+
+    operator fun plus(other: Coordinate3D): Coordinate3D = Coordinate3D(x + other.x, y + other.y, z + other.z)
+    operator fun plus(scalar: Double): Coordinate3D = Coordinate3D(x + scalar, y + scalar, z + scalar)
+    operator fun plusAssign(other: Coordinate3D) {
+        x += other.x
+        y += other.y
+        z += other.z
+    }
+
+    operator fun minus(other: Coordinate3D): Coordinate3D = Coordinate3D(x - other.x, y - other.y, z - other.z)
+    operator fun minus(scalar: Double): Coordinate3D = Coordinate3D(x - scalar, y - scalar, z - scalar)
+    operator fun minusAssign(other: Coordinate3D) {
+        x -= other.x
+        y -= other.y
+        z -= other.z
+    }
+
+    operator fun times(other: Coordinate3D): Coordinate3D = Coordinate3D(x * other.x, y * other.y, z * other.z)
+    operator fun times(scalar: Double): Coordinate3D = Coordinate3D(x * scalar, y * scalar, z * scalar)
+    operator fun timesAssign(other: Coordinate3D) {
+        x *= other.x
+        y *= other.y
+        z *= other.z
+    }
+
+    operator fun div(other: Coordinate3D): Coordinate3D = Coordinate3D(x / other.x, y / other.y, z / other.z)
+    operator fun div(scalar: Double): Coordinate3D = Coordinate3D(x / scalar, y / scalar, z / scalar)
+    operator fun divAssign(other: Coordinate3D) {
+        x /= other.x
+        y /= other.y
+        z /= other.z
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null) return false
@@ -184,6 +256,11 @@ class Coordinate3D(
     }
 
     companion object {
+        /**
+         * A 3D Coordinate at the origin.
+         */
+        val zero = Coordinate3D(0, 0, 0)
+
         /**
          * Parses a 3D Coordinate from a string.
          * @param point String

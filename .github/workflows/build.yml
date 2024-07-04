@@ -126,4 +126,4 @@ jobs:
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-        run: ./gradlew clean build publish
+        run: ./gradlew clean build publish -Psnapshot=true

@@ -14,29 +14,24 @@ fun exportToString(
     includeData: Boolean = true,
     lineSeparator: String = "\n"
 ): String {
-    val builder= StringBuilder()
+    val exporter = LevelExporter.export(level)
 
-    if (includeHeaders) {
-        for ((k, v) in level.getHeaders())
-            builder.append("@").append(k).append(" ").append(v).append(lineSeparator)
+    exporter.includeHeaders = includeHeaders
+    exporter.includeData = includeData
+    exporter.lineSeparator = lineSeparator
 
-        builder.append("---").append(lineSeparator)
-    }
-
-    if (includeData) {
-        val blockMap = mutableMapOf<Block, String>()
-        val blocks = level.blocks.sorted()
-
-        for (block in blocks)
-            if (blockMap.containsKey(block.block))
-                blockMap[block.block] = blockMap[block.block] + "*" + block.coordinate.toString()
-        else
-            blockMap[block.block] = block.coordinate.toString()
-
-        for ((k, v) in blockMap)
-            builder.append(k).append(": ").append(v).append(lineSeparator)
-    }
-
-    builder.append("end")
-    return builder.toString()
+    return exporter.writeToString()
 }
+
+/**
+ * Exports this Level to a String.
+ * @param includeHeaders Whether to include Headers in Export
+ * @param includeData Whether to include Data in Export
+ * @param lineSeparator Line Separator
+ * @return Level Export
+ */
+fun Level.exportToString(
+    includeHeaders: Boolean = true,
+    includeData: Boolean = true,
+    lineSeparator: String = "\n"
+): String = exportToString(this, includeHeaders, includeData, lineSeparator)

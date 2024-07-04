@@ -7,8 +7,10 @@ plugins {
     jacoco
 }
 
+val v = "0.2.2"
+
 group = "xyz.calcugames"
-version = "0.2.1-SNAPSHOT"
+version = if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v
 
 repositories {
     mavenCentral()

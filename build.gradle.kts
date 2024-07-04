@@ -30,8 +30,16 @@ kotlin {
         nodejs()
     }
 
+    mingwX64()
+    linuxArm64()
+    linuxX64()
+
+    macosX64()
+    macosArm64()
     iosX64()
     iosArm64()
+    tvosX64()
+    tvosArm64()
 
     sourceSets {
         commonTest.dependencies {

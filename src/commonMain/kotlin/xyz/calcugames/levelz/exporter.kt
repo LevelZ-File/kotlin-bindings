@@ -30,7 +30,7 @@ fun exportToString(
  * @param lineSeparator Line Separator
  * @return Level Export
  */
-fun Level.exportToString(
+fun Level.export(
     includeHeaders: Boolean = true,
     includeData: Boolean = true,
     lineSeparator: String = "\n"

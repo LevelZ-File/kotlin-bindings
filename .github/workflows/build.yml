@@ -38,9 +38,9 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        java-version: [11, 17, 21]
+        java-version: [8, 11, 17, 21]
 
-    name: Build Java ${{ matrix.java-version }}
+    name: Build Java ${{ matrix.java-version }} / ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,10 +66,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: 'recursive'
-      - name: Setup JDK 11
+      - name: Setup JDK 8
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: '8'
           distribution: 'temurin'
           cache: 'gradle'
       - name: Change Permissions
@@ -120,7 +120,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '11'
+          java-version: '8'
           cache: 'gradle'
       - name: Change Permissions
         run: chmod +x ./gradlew
@@ -130,4 +130,4 @@ jobs:
         env:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
-        run: ./gradlew clean build publish -Psnapshot=true
+        run: ./gradlew clean assemble publish -Psnapshot=true

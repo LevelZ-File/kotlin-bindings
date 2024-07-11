@@ -42,6 +42,13 @@ enum class Dimension {
     val defaultCoordinate: Coordinate
         get() = if (is2D) Coordinate2D(0, 0) else Coordinate3D(0, 0, 0)
 
+    /**
+     * Gets the number of dimensions.
+     * @return Number of Dimensions
+     */
+    val asNumber: Int
+        get() = if (is2D) 2 else 3
+
 }
 
 /**
@@ -102,6 +109,11 @@ abstract class Level : Iterable<LevelObject> {
     abstract val spawn: Coordinate
 
     /**
+     * The dimension of the level.
+     */
+    abstract val dimension: Dimension
+
+    /**
      * The coordinates in the level.
      */
     abstract val coordinates: Set<Coordinate>
@@ -117,7 +129,7 @@ abstract class Level : Iterable<LevelObject> {
      * @return Level Headers
      */
     fun getHeaders(): Map<String, String> {
-        return headers.toMap() + mapOf("type" to "2")
+        return mapOf("type" to dimension.asNumber.toString()) + headers.toMap()
     }
 
     override fun iterator(): Iterator<LevelObject> {
@@ -132,6 +144,7 @@ class Level2D : Level {
     private val _blocks: MutableSet<LevelObject> = mutableSetOf()
 
     override val spawn: Coordinate2D
+    override val dimension: Dimension = Dimension.TWO
 
     /**
      * The scroll direction for this 2D Level.
@@ -164,8 +177,8 @@ class Level2D : Level {
         this._blocks.addAll(blocks)
     }
 
-    override val coordinates: Set<Coordinate>
-        get() = _blocks.map(LevelObject::coordinate).toSet()
+    override val coordinates: Set<Coordinate2D>
+        get() = _blocks.map(LevelObject::coordinate).filterIsInstance<Coordinate2D>().toSet()
 
     override val blocks: Set<LevelObject>
         get() = _blocks.toSet()
@@ -179,6 +192,7 @@ class Level3D : Level {
     private val _blocks: MutableSet<LevelObject> = mutableSetOf()
 
     override val spawn: Coordinate3D
+    override val dimension: Dimension = Dimension.THREE
 
     /**
      * Creates an empty 3D Level.
@@ -204,8 +218,8 @@ class Level3D : Level {
         this._blocks.addAll(blocks)
     }
 
-    override val coordinates: Set<Coordinate>
-        get() = _blocks.map(LevelObject::coordinate).toSet()
+    override val coordinates: Set<Coordinate3D>
+        get() = _blocks.map(LevelObject::coordinate).filterIsInstance<Coordinate3D>().toSet()
 
     override val blocks: Set<LevelObject>
         get() = _blocks.toSet()
@@ -237,6 +251,16 @@ class LevelExporter private constructor(private val level: Level) {
     var lineSeparator: String = "\n"
 
     /**
+     * A comparator to sort the headers by. Default is in order.
+     */
+    var sortHeadersBy: Comparator<Map.Entry<String, String>>? = null
+
+    /**
+     * A comparator to sort the blocks by. Default is by [LevelObject.coordinate].
+     */
+    var sortBlocksBy: Comparator<LevelObject>? = null
+
+    /**
      * Exports the Level to a string.
      * @return Level String
      */
@@ -244,7 +268,11 @@ class LevelExporter private constructor(private val level: Level) {
         val builder = StringBuilder()
 
         if (includeHeaders) {
-            level.getHeaders().entries.forEach {
+            val entries = level.getHeaders().entries.toMutableList()
+            if (sortHeadersBy != null)
+                entries.sortWith(sortHeadersBy!!)
+
+            entries.forEach {
                 builder.append('@').append(it.key).append(' ').append(it.value).append(lineSeparator)
             }
 
@@ -253,7 +281,10 @@ class LevelExporter private constructor(private val level: Level) {
 
         if (includeData) {
             val blockMap: MutableMap<Block, String> = mutableMapOf()
-            val blocks: List<LevelObject> = level.blocks.sorted()
+            val blocks = level.blocks.sorted().toMutableList()
+
+            if (sortBlocksBy != null)
+                blocks.sortWith(sortBlocksBy!!)
 
             for (block in blocks)
                 if (blockMap.containsKey(block.block))

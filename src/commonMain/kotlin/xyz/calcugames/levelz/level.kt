@@ -117,7 +117,7 @@ abstract class Level : Iterable<LevelObject> {
      * @return Level Headers
      */
     fun getHeaders(): Map<String, String> {
-        return headers.toMap()
+        return headers.toMap() + mapOf("type" to "2")
     }
 
     override fun iterator(): Iterator<LevelObject> {

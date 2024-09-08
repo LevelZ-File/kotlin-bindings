@@ -52,6 +52,11 @@ kotlin {
     tvosX64()
     tvosSimulatorArm64()
     tvosArm64()
+    watchosX64()
+    watchosSimulatorArm64()
+    watchosDeviceArm64()
+    watchosArm32()
+    watchosArm64()
 
     sourceSets {
         commonTest.dependencies {

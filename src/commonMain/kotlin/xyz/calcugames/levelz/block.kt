@@ -3,6 +3,8 @@ package xyz.calcugames.levelz
 import xyz.calcugames.levelz.coord.Coordinate
 import xyz.calcugames.levelz.coord.Coordinate2D
 import xyz.calcugames.levelz.coord.Coordinate3D
+import xyz.calcugames.levelz.parser.ParseException
+import xyz.calcugames.levelz.parser.value
 
 /**
  * Represents a Block in a Level.
@@ -51,6 +53,37 @@ class Block(
     override fun toString(): String {
         if (properties.isEmpty()) return name
         return "$name<$properties>"
+    }
+
+    companion object {
+
+        /**
+         * Reads a raw block string and converts it into a Block.
+         * @param input Raw Block String
+         * @return Block
+         */
+        fun fromString(input: String): Block {
+            if (input.isEmpty()) throw ParseException("Invalid LevelZ Block: $input")
+
+            val split = input.replace("[\\s>]".toRegex(), "").split("<".toRegex()).dropLastWhile { it.isEmpty() }
+                .toTypedArray()
+            val name = split[0].trim { it <= ' ' }
+
+            if (split.size < 2) return Block(name, emptyMap())
+
+            val properties = mutableMapOf<String, Any>()
+            val props = split[1].split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+
+            for (entry in props) {
+                val kv = entry.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+                if (kv.size < 2) throw ParseException("Invalid LevelZ Block: $input")
+
+                properties[kv[0]] = value(kv[1])
+            }
+
+            return Block(name, properties)
+        }
+
     }
 }
 

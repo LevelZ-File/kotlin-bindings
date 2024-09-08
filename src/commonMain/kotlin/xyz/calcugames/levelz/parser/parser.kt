@@ -248,33 +248,11 @@ internal fun readBlock(blockLine: String, seed: Random): Block {
             }
         }
 
-        block = readRawBlock(roll(blockToChance, seed)!!)
+        block = Block.fromString(roll(blockToChance, seed)!!)
     } else
-        block = readRawBlock(blockLine)
+        block = Block.fromString(blockLine)
 
     return block
-}
-
-internal fun readRawBlock(input: String): Block {
-    if (input.isEmpty()) throw ParseException("Invalid LevelZ Block: $input")
-
-    val split = input.replace("[\\s>]".toRegex(), "").split("<".toRegex()).dropLastWhile { it.isEmpty() }
-        .toTypedArray()
-    val name = split[0].trim { it <= ' ' }
-
-    if (split.size < 2) return Block(name, emptyMap())
-
-    val properties = mutableMapOf<String, Any>()
-    val props = split[1].split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-
-    for (entry in props) {
-        val kv = entry.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
-        if (kv.size < 2) throw ParseException("Invalid LevelZ Block: $input")
-
-        properties[kv[0]] = value(kv[1])
-    }
-
-    return Block(name, properties)
 }
 
 internal fun parse(file: Array<String>, seed: Random): Level {

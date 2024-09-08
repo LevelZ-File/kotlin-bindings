@@ -2,12 +2,10 @@ plugins {
     kotlin("multiplatform") version "2.0.20"
     id("org.jetbrains.dokka") version "1.9.20"
 
-    java
     `maven-publish`
-    jacoco
 }
 
-val v = "0.2.4"
+val v = "0.3.0"
 
 group = "xyz.calcugames"
 version = if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v
@@ -35,6 +33,11 @@ kotlin {
         nodejs()
     }
 
+    androidNativeX64()
+    androidNativeX86()
+    androidNativeArm32()
+    androidNativeArm64()
+
     mingwX64()
     linuxArm64()
     linuxX64()
@@ -47,6 +50,11 @@ kotlin {
     tvosX64()
     tvosSimulatorArm64()
     tvosArm64()
+    watchosX64()
+    watchosSimulatorArm64()
+    watchosDeviceArm64()
+    watchosArm32()
+    watchosArm64()
 
     sourceSets {
         commonTest.dependencies {

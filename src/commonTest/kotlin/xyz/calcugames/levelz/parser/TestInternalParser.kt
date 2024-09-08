@@ -106,9 +106,9 @@ class TestInternalParser {
 
     @Test
     fun testReadRawBlock() {
-        assertEquals(Block("test", mapOf("test" to true)), readRawBlock("test<test=true>"))
-        assertEquals(Block("ball", mapOf("bounce" to 5)), readRawBlock("ball<bounce=5>"))
-        assertEquals(Block("stone", mapOf("weight" to 5.0)), readRawBlock("stone<weight=5.0>"))
+        assertEquals(Block("test", mapOf("test" to true)), Block.fromString("test<test=true>"))
+        assertEquals(Block("ball", mapOf("bounce" to 5)), Block.fromString("ball<bounce=5>"))
+        assertEquals(Block("stone", mapOf("weight" to 5.0)), Block.fromString("stone<weight=5.0>"))
     }
 
     @Test

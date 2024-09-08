@@ -7,7 +7,7 @@ plugins {
     jacoco
 }
 
-val v = "0.2.4"
+val v = "0.3.0"
 
 group = "xyz.calcugames"
 version = if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v

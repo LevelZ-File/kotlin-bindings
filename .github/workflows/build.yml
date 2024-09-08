@@ -103,11 +103,7 @@ jobs:
         run: bash dokka.sh ${GITHUB_SHA::7}
 
   publish:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     needs: [build, test]
     name: Publish to Repository
     if: ${{ github.event_name != 'pull_request' && github.ref_name == 'master' }}

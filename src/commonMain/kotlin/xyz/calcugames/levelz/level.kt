@@ -275,7 +275,7 @@ class LevelExporter private constructor(private val level: Level) {
         val builder = StringBuilder()
 
         if (includeHeaders) {
-            val entries = level.getHeaders().entries.toMutableList()
+            val entries = level.getAllHeaders().entries.toMutableList()
             if (sortHeadersBy != null)
                 entries.sortWith(sortHeadersBy!!)
 

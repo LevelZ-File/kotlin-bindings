@@ -1,10 +1,9 @@
 plugins {
     kotlin("multiplatform") version "2.0.20"
+    id("com.android.library") version "8.2.0"
     id("org.jetbrains.dokka") version "1.9.20"
 
-    java
     `maven-publish`
-    jacoco
 }
 
 val v = "0.3.0"
@@ -35,6 +34,12 @@ kotlin {
         nodejs()
     }
 
+    androidTarget()
+    androidNativeX64()
+    androidNativeX86()
+    androidNativeArm32()
+    androidNativeArm64()
+
     mingwX64()
     linuxArm64()
     linuxX64()
@@ -53,6 +58,10 @@ kotlin {
             implementation(kotlin("test"))
         }
     }
+}
+
+android {
+    namespace = "xyz.calcugames.levelz"
 }
 
 tasks {

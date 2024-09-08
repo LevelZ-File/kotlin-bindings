@@ -86,7 +86,7 @@ enum class Scroll {
  */
 abstract class Level : Iterable<LevelObject> {
 
-    private val headers: MutableMap<String, String> = mutableMapOf()
+    private val _headers: MutableMap<String, String> = mutableMapOf()
 
     /**
      * Creates an empty Level.
@@ -98,7 +98,7 @@ abstract class Level : Iterable<LevelObject> {
      * @param headers Level Headers
      */
     protected constructor(headers: Map<String, String>) {
-        this.headers.putAll(headers)
+        this._headers.putAll(headers)
     }
 
     // Implementation
@@ -124,6 +124,13 @@ abstract class Level : Iterable<LevelObject> {
     abstract val blocks: Set<LevelObject>
 
     // Default
+
+    /**
+     * Gets an immutable copy of the raw headers for this level, excluding the dimension.
+     */
+    val headers: Map<String, String>
+        get() = _headers.toMap()
+
     /**
      * Gets an immutable copy of the raw headers for this level.
      * @return Level Headers

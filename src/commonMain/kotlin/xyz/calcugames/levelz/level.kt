@@ -135,7 +135,7 @@ abstract class Level : Iterable<LevelObject> {
      * Gets an immutable copy of the raw headers for this level.
      * @return Level Headers
      */
-    fun getHeaders(): Map<String, String> {
+    fun getAllHeaders(): Map<String, String> {
         return mapOf("type" to dimension.asNumber.toString()) + headers.toMap()
     }
 

@@ -2,6 +2,7 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:xyz.calcugames.levelz.builder////PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/index.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder.Companion///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/-companion/index.html
+$dokka.location:xyz.calcugames.levelz.builder/LevelBuilder.Companion/create/#xyz.calcugames.levelz.Dimension/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/-companion/create.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder.Companion/create2D/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/-companion/create2-d.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder.Companion/create3D/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/-companion/create3-d.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/index.html
@@ -15,11 +16,15 @@ $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/block/#xyz.calcugames
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/block/#xyz.calcugames.levelz.Block#kotlin.Int#kotlin.Int/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/block.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/block/#xyz.calcugames.levelz.Block#xyz.calcugames.levelz.coord.Coordinate/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/block.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/block/#xyz.calcugames.levelz.LevelObject/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/block.html
+$dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/blocks/#kotlin.Array[xyz.calcugames.levelz.LevelObject]/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/blocks.html
+$dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/blocks/#kotlin.collections.Iterable[xyz.calcugames.levelz.LevelObject]/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/blocks.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/build/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/build.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/getBlocks/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/get-blocks.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/getDimension/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/get-dimension.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/getHeaders/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/get-headers.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/header/#kotlin.String#kotlin.String?/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/header.html
+$dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/headers/#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/headers.html
+$dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/loadLevel/#xyz.calcugames.levelz.Level/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/load-level.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/matrix/#xyz.calcugames.levelz.Block#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/matrix.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/matrix/#xyz.calcugames.levelz.Block#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int#kotlin.Int/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/matrix.html
 $dokka.location:xyz.calcugames.levelz.builder/LevelBuilder/scroll/#xyz.calcugames.levelz.Scroll?/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz.builder/-level-builder/scroll.html
@@ -116,6 +121,8 @@ $dokka.location:xyz.calcugames.levelz.parser/ParseException/ParseException/#kotl
 $dokka.location:xyz.calcugames.levelz////PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/index.html
 $dokka.location:xyz.calcugames.levelz//export/xyz.calcugames.levelz.Level#kotlin.Boolean#kotlin.Boolean#kotlin.String/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/export.html
 $dokka.location:xyz.calcugames.levelz//exportToString/#xyz.calcugames.levelz.Level#kotlin.Boolean#kotlin.Boolean#kotlin.String/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/export-to-string.html
+$dokka.location:xyz.calcugames.levelz/Block.Companion///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-block/-companion/index.html
+$dokka.location:xyz.calcugames.levelz/Block.Companion/fromString/#kotlin.String/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-block/-companion/from-string.html
 $dokka.location:xyz.calcugames.levelz/Block///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-block/index.html
 $dokka.location:xyz.calcugames.levelz/Block/Block/#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.Any]/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-block/-block.html
 $dokka.location:xyz.calcugames.levelz/Block/equals/#kotlin.Any?/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-block/equals.html
@@ -138,7 +145,8 @@ $dokka.location:xyz.calcugames.levelz/Level///PointingToDeclaration/levelz-kt/x
 $dokka.location:xyz.calcugames.levelz/Level/blocks/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/blocks.html
 $dokka.location:xyz.calcugames.levelz/Level/coordinates/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/coordinates.html
 $dokka.location:xyz.calcugames.levelz/Level/dimension/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/dimension.html
-$dokka.location:xyz.calcugames.levelz/Level/getHeaders/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/get-headers.html
+$dokka.location:xyz.calcugames.levelz/Level/getAllHeaders/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/get-all-headers.html
+$dokka.location:xyz.calcugames.levelz/Level/headers/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/headers.html
 $dokka.location:xyz.calcugames.levelz/Level/iterator/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/iterator.html
 $dokka.location:xyz.calcugames.levelz/Level/spawn/#/PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level/spawn.html
 $dokka.location:xyz.calcugames.levelz/Level2D///PointingToDeclaration/levelz-kt/xyz.calcugames.levelz/-level2-d/index.html

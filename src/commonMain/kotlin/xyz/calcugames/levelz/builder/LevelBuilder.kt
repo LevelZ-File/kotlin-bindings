@@ -14,6 +14,17 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
     private val blocks = mutableSetOf<LevelObject>()
 
     /**
+     * Loads a level into the builder.
+     * @param level Level
+     * @return this class, for chaining
+     */
+    fun loadLevel(level: Level): LevelBuilder {
+        headers.putAll(level.headers)
+        blocks.addAll(level.blocks)
+        return this
+    }
+
+    /**
      * Sets the spawn point for the level.
      * @param spawn Spawn Point
      * @return this class, for chaining
@@ -65,6 +76,16 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
     }
 
     /**
+     * Sets multiple header values.
+     * @param headers Header Map
+     * @return this class, for chaining
+     */
+    fun headers(headers: Map<String, String>): LevelBuilder {
+        this.headers.putAll(headers)
+        return this
+    }
+
+    /**
      * Adds a block to the level.
      * @param block Level Block
      * @return this class, for chaining
@@ -75,6 +96,28 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
         if (dimension.is3D && block.coordinate !is Coordinate3D) throw IllegalArgumentException("Block Coordinate must be 3D")
 
         blocks.add(block)
+        return this
+    }
+
+    /**
+     * Adds multiple blocks to the level.
+     * @param blocks Level Blocks
+     * @return this class, for chaining
+     * @throws IllegalArgumentException If any of the block coordinates are not the same dimension as the level
+     */
+    fun blocks(vararg blocks: LevelObject): LevelBuilder {
+        for (block in blocks) block(block)
+        return this
+    }
+
+    /**
+     * Adds multiple blocks to the level.
+     * @param blocks Level Blocks
+     * @return this class, for chaining
+     * @throws IllegalArgumentException If any of the block coordinates are not the same dimension as the level
+     */
+    fun blocks(blocks: Iterable<LevelObject>): LevelBuilder {
+        for (block in blocks) block(block)
         return this
     }
 
@@ -184,7 +227,7 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
     }
 
     /**
-     * Performs a block matrix operation.
+     * Performs a 2D block matrix operation.
      * @param block Block
      * @param cx Center X
      * @param cy Center Y
@@ -205,7 +248,7 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
     }
 
     /**
-     * Performs a block matrix operation.
+     * Performs a 3D block matrix operation.
      * @param block Block
      * @param cx Center X
      * @param cy Center Y
@@ -217,7 +260,7 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
      * @param z1 First Z Coordinate
      * @param z2 Second Z Coordinate
      * @return this class, for chaining
-     * @throws IllegalArgumentException If the dimension is not 2D, or first is bigger than second
+     * @throws IllegalArgumentException If the dimension is not 3D, or first is bigger than second
      */
     fun matrix(block: Block, cx: Int, cy: Int, cz: Int, x1: Int, x2: Int, y1: Int, y2: Int, z1: Int, z2: Int): LevelBuilder {
         if (!dimension.is3D) throw IllegalArgumentException("3D Matrix is only supported for 3D levels")
@@ -269,5 +312,11 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
          * @return 3D Level Builder
          */
         fun create3D(): LevelBuilder = LevelBuilder(Dimension.THREE)
+
+        /**
+         * Creates a Level Builder with the given dimension.
+         * @param dimension Level Dimension
+         */
+        fun create(dimension: Dimension): LevelBuilder = LevelBuilder(dimension)
     }
 }

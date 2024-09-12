@@ -145,6 +145,7 @@ class Coordinate2D(
         fun fromString(point: String): Coordinate2D {
             val point0 = point.trim { it <= ' ' }.replace("[\\[\\]\\s]".toRegex(), "")
             val parts = point0.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (parts.size != 2) throw IllegalArgumentException("Invalid Coordinate Length")
 
             val x = parts[0].toDouble(); val y = parts[1].toDouble()
             return Coordinate2D(x, y)
@@ -269,6 +270,7 @@ class Coordinate3D(
         fun fromString(point: String): Coordinate3D {
             val point0 = point.trim { it <= ' ' }.replace("[\\[\\]\\s]".toRegex(), "")
             val parts = point0.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            if (parts.size != 3) throw IllegalArgumentException("Invalid Coordinate Length")
 
             val x = parts[0].toDouble(); val y = parts[1].toDouble(); val z = parts[2].toDouble()
             return Coordinate3D(x, y, z)

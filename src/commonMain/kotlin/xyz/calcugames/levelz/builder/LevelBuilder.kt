@@ -1,9 +1,7 @@
 package xyz.calcugames.levelz.builder
 
 import xyz.calcugames.levelz.*
-import xyz.calcugames.levelz.coord.Coordinate
-import xyz.calcugames.levelz.coord.Coordinate2D
-import xyz.calcugames.levelz.coord.Coordinate3D
+import xyz.calcugames.levelz.coord.*
 
 /**
  * Represents a builder for creating LevelZ Levels.
@@ -267,6 +265,20 @@ class LevelBuilder private constructor(private val dimension: Dimension) {
         if (x1 > x2 || y1 > y2 || z1 > z2) throw IllegalArgumentException("First coordinate must be smaller than second")
 
         for (x in x1..x2) for (y in y1..y2) for (z in z1..z2) block(block, cx + x, cy + y, cz + z)
+
+        return this
+    }
+
+    /**
+     * Performs a matrix operation.
+     * @param block Block
+     * @param matrix Coordinate Matrix
+     * @return this class, for chaining
+     */
+    fun matrix(block: Block, matrix: CoordinateMatrix): LevelBuilder {
+        if (dimension != matrix.dimension) throw IllegalArgumentException("Matrix Dimension must match Level Dimension")
+
+        for (coord in matrix) block(block, coord)
 
         return this
     }

@@ -179,3 +179,17 @@ class LevelObject(
         return coordinate.compareTo(other.coordinate)
     }
 }
+
+/**
+ * Converts a Pair of Block and Coordinate into a LevelObject.
+ * @return LevelObject
+ */
+val <T : Coordinate> Pair<Block, T>.levelObject: LevelObject
+    get() = LevelObject(first, second)
+
+/**
+ * Maps all the given coordinates to LevelObjects with the given block.
+ * @param block Block
+ * @return List of LevelObjects
+ */
+fun <T : Coordinate> Iterable<T>.mapBlock(block: Block) = map { LevelObject(block, it) }

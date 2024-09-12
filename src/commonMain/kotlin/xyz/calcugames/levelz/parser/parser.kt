@@ -3,6 +3,8 @@ package xyz.calcugames.levelz.parser
 import xyz.calcugames.levelz.*
 import xyz.calcugames.levelz.coord.Coordinate2D
 import xyz.calcugames.levelz.coord.Coordinate3D
+import xyz.calcugames.levelz.coord.CoordinateMatrix2D
+import xyz.calcugames.levelz.coord.CoordinateMatrix3D
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
@@ -161,21 +163,9 @@ internal fun read2DPoints(input: String): Set<Coordinate2D> {
         val s = s0.trim()
         if (s.isEmpty()) continue
 
-        if (s.startsWith("(") && s.endsWith("]")) {
-            val split = s.split("\\^".toRegex()).dropLastWhile { it.isEmpty() }
-
-            val coords = split[1].replace("[\\[\\]\\s]".toRegex(), "").split(",".toRegex()).dropLastWhile { it.isEmpty() }
-            val matrix = split[0].replace("[()\\s]".toRegex(), "").split(",".toRegex()).dropLastWhile { it.isEmpty() }
-
-            val cx = coords[0].toDouble(); val cy = coords[1].toDouble()
-
-            val x1 = matrix[0].toInt(); val x2 = matrix[1].toInt()
-            val y1 = matrix[2].toInt(); val y2 = matrix[3].toInt()
-
-            for (x in min(x1, x2)..max(x1, x2))
-                for (y in min(y1, y2)..max(y1, y2))
-                    points.add(Coordinate2D(cx + x, cy + y))
-        } else
+        if (s.startsWith("(") && s.endsWith("]"))
+            points.addAll(CoordinateMatrix2D.fromString(s).coordinates)
+        else
             points.add(Coordinate2D.fromString(s))
     }
 
@@ -190,23 +180,9 @@ internal fun read3DPoints(input: String): Set<Coordinate3D> {
         val s = s0.trim()
         if (s.isEmpty()) continue
 
-        if (s.startsWith("(") && s.endsWith("]")) {
-            val split = s.split("\\^".toRegex()).dropLastWhile { it.isEmpty() }
-
-            val coords = split[1].replace("[\\[\\]\\s]".toRegex(), "").split(",".toRegex()).dropLastWhile { it.isEmpty() }
-            val matrix = split[0].replace("[()\\s]".toRegex(), "").split(",".toRegex()).dropLastWhile { it.isEmpty() }
-
-            val cx = coords[0].toDouble(); val cy = coords[1].toDouble(); val cz = coords[2].toDouble()
-
-            val x1 = matrix[0].toInt(); val x2 = matrix[1].toInt()
-            val y1 = matrix[2].toInt(); val y2 = matrix[3].toInt()
-            val z1 = matrix[4].toInt(); val z2 = matrix[5].toInt()
-
-            for (x in min(x1, x2)..max(x1, x2))
-                for (y in min(y1, y2)..max(y1, y2))
-                    for (z in min(z1, z2)..max(z1, z2))
-                        points.add(Coordinate3D(cx + x, cy + y, cz + z))
-        } else
+        if (s.startsWith("(") && s.endsWith("]"))
+            points.addAll(CoordinateMatrix3D.fromString(s).coordinates)
+        else
             points.add(Coordinate3D.fromString(s))
     }
 

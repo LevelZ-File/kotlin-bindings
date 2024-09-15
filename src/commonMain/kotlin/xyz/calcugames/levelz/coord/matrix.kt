@@ -90,7 +90,7 @@ class CoordinateMatrix2D(
 
             for (x in minX..maxX)
                 for (y in minY..maxY)
-                    set.add(Coordinate2D(x, y))
+                    set.add(Coordinate2D(start.x + x, start.y + y))
 
             return set
         }

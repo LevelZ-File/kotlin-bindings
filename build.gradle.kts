@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+
 plugins {
     kotlin("multiplatform") version "2.0.20"
     id("org.jetbrains.dokka") version "1.9.20"
@@ -5,7 +7,7 @@ plugins {
     `maven-publish`
 }
 
-val v = "0.3.2"
+val v = "0.3.3"
 
 group = "xyz.calcugames"
 version = if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v
@@ -30,6 +32,23 @@ kotlin {
                 }
             }
         }
+        nodejs()
+        generateTypeScriptDefinitions()
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser {
+            testTask {
+                useKarma {
+                    useFirefoxHeadless()
+                }
+            }
+        }
+        nodejs()
+        generateTypeScriptDefinitions()
+    }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmWasi {
         nodejs()
     }
 

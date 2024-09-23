@@ -39,17 +39,29 @@ kotlin {
     wasmJs {
         browser {
             testTask {
-                useKarma {
-                    useFirefoxHeadless()
+                useMocha {
+                    timeout = "10m"
                 }
             }
         }
-        nodejs()
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "10m"
+                }
+            }
+        }
         generateTypeScriptDefinitions()
     }
     @OptIn(ExperimentalWasmDsl::class)
     wasmWasi {
-        nodejs()
+        nodejs {
+            testTask {
+                useMocha {
+                    timeout = "10m"
+                }
+            }
+        }
     }
 
     androidNativeX64()

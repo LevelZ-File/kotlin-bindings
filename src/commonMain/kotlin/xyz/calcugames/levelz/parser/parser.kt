@@ -215,12 +215,15 @@ internal fun readBlock(blockLine: String, seed: Random): Block {
         val blockToChance = mutableMapOf<String, Double>()
         for (b in blocks) {
             val split0 = b.split("=".toRegex(), limit = 2).toTypedArray()
-            try {
-                blockToChance[split0[1]] = split0[0].toDouble()
-            } catch (e: NumberFormatException) {
+
+            if (split0.size == 1)
                 blockToChance[b] = 1.0 / l
-            } catch (e: IndexOutOfBoundsException) {
-                blockToChance[b] = 1.0 / l
+            else {
+                try {
+                    blockToChance[split0[1]] = split0[0].toDouble()
+                } catch (e: NumberFormatException) {
+                    blockToChance[b] = 1.0 / l
+                }
             }
         }
 

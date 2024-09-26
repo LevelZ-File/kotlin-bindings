@@ -82,7 +82,7 @@ jobs:
       - name: Install Firefox
         uses: browser-actions/setup-firefox@v1
       - name: Gradle Test
-        run: ./gradlew allTests
+        run: ./gradlew allTests jvmJacocoTestReport
       - name: Collect JaCoCo Report
         if: ${{ github.event_name != 'pull_request' }}
         id: jacoco_reporter

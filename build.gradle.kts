@@ -5,6 +5,7 @@ plugins {
     id("org.jetbrains.dokka") version "1.9.20"
 
     `maven-publish`
+    jacoco
 }
 
 val v = "0.3.3"
@@ -97,6 +98,22 @@ kotlin {
 tasks {
     clean {
         delete("kotlin-js-store")
+    }
+
+    create("jvmJacocoTestReport", JacocoReport::class) {
+        dependsOn("jvmTest")
+
+        classDirectories.setFrom(layout.buildDirectory.file("classes/kotlin/jvm/"))
+        sourceDirectories.setFrom("src/commonMain/kotlin/", "src/jvmMain/kotlin/")
+        executionData.setFrom(layout.buildDirectory.files("jacoco/jvmTest.exec"))
+
+        reports {
+            xml.required.set(true)
+            xml.outputLocation.set(layout.buildDirectory.file("jacoco.xml"))
+
+            html.required.set(true)
+            html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+        }
     }
 }
 

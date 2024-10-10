@@ -28,9 +28,7 @@ kotlin {
     js {
         browser {
             testTask {
-                useKarma {
-                    useFirefoxHeadless()
-                }
+                enabled = false
             }
         }
         nodejs()
@@ -40,9 +38,7 @@ kotlin {
     wasmJs {
         browser {
             testTask {
-                useMocha {
-                    timeout = "10m"
-                }
+                enabled = false
             }
         }
         nodejs {

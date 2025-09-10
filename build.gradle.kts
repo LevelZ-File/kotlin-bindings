@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    kotlin("multiplatform") version "2.2.10"
+    kotlin("multiplatform") version "2.2.20"
     id("org.jetbrains.dokka") version "2.0.0"
 
     `maven-publish`

@@ -197,8 +197,6 @@ jobs:
         run: ./gradlew clean dokkaGeneratePublicationHtml
       - name: Deploy Dokka
         run: bash dokka.sh ${GITHUB_SHA::7}
-      - name: Stop Gradle
-        run: ./gradlew --stop
 
   publish:
     runs-on: macos-latest

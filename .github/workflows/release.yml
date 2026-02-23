@@ -20,6 +20,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'gradle'
+      - name: Set up Konan
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.konan/caches
+            ~/.konan/dependencies
+            ~/.konan/kotlin-native-prebuilt-*
+          key: ${{ runner.os }}-${{ runner.arch }}-konan
+          restore-keys: |
+            ${{ runner.os }}-konan
+            ${{ runner.os }}-${{ runner.arch }}-konan
       - name: Change Permissions
         run: chmod +x ./gradlew
       - name: Install Firefox

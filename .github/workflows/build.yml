@@ -39,6 +39,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Gradle Information
         run: ./gradlew project tasks dependencies
+      - name: Stop Gradle
+        run: ./gradlew --stop
 
   build:
     runs-on: ${{ matrix.os }}
@@ -75,6 +77,8 @@ jobs:
         run: chmod +x ./gradlew
       - name: Build with Gradle
         run: ./gradlew assemble publishToMavenLocal
+      - name: Stop Gradle
+        run: ./gradlew --stop
 
   test:
     runs-on: macos-latest
@@ -167,6 +171,8 @@ jobs:
           pass-emoji: ✅
           min-coverage-overall: 85
           min-coverage-changed-files: 90
+      - name: Stop Gradle
+        run: ./gradlew --stop
 
   deploy:
     runs-on: ubuntu-latest
@@ -191,6 +197,8 @@ jobs:
         run: ./gradlew clean dokkaGeneratePublicationHtml
       - name: Deploy Dokka
         run: bash dokka.sh ${GITHUB_SHA::7}
+      - name: Stop Gradle
+        run: ./gradlew --stop
 
   publish:
     runs-on: macos-latest
@@ -232,3 +240,5 @@ jobs:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         run: ./gradlew assemble publish -Psnapshot=true
+      - name: Stop Gradle
+        run: ./gradlew --stop

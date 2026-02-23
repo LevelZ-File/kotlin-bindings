@@ -8,7 +8,7 @@ plugins {
     jacoco
 }
 
-val v = "0.3.3"
+val v = "0.3.4"
 
 group = "xyz.calcugames"
 version = if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v
@@ -19,8 +19,8 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 kotlin {
@@ -76,13 +76,10 @@ kotlin {
     iosSimulatorArm64()
     iosArm64()
     tvosX64()
-    tvosSimulatorArm64()
     tvosArm64()
     watchosX64()
     watchosSimulatorArm64()
     watchosDeviceArm64()
-    watchosArm32()
-    watchosArm64()
 
     sourceSets {
         commonTest.dependencies {
@@ -96,7 +93,7 @@ tasks {
         delete("kotlin-js-store")
     }
 
-    create("jvmJacocoTestReport", JacocoReport::class) {
+    register("jvmJacocoTestReport", JacocoReport::class) {
         dependsOn("jvmTest")
 
         classDirectories.setFrom(layout.buildDirectory.file("classes/kotlin/jvm/"))

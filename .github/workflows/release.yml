@@ -14,11 +14,11 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
-      - name: Set up JDK 8
+      - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
-          distribution: 'zulu'
-          java-version: '8'
+          distribution: 'temurin'
+          java-version: '17'
           cache: 'gradle'
       - name: Change Permissions
         run: chmod +x ./gradlew
@@ -29,3 +29,37 @@ jobs:
           NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
           NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         run: ./gradlew clean assemble publish
+
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    needs: publish
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Change Permissions
+        run: chmod +x ./gradlew
+      - name: Extract Gradle version
+        run: echo "VERSION=$(./gradlew properties | grep '^version:' | awk '{print $2}')" >> $GITHUB_ENV
+      - name: Retrieve Latest Tag
+        id: latest_tag
+        run: echo "LATEST_TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+      - name: Generate Changelog
+        if: ${{ github.event.inputs.changelog == '' }}
+        id: changelog
+        uses: mikepenz/release-changelog-builder-action@v6
+        with:
+          configuration: ".github/release.json"
+          mode: "HYBRID"
+          fromTag: "${{ env.LATEST_TAG }}"
+          toTag: "${{ github.ref_name }}"
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}${{ github.event.inputs.suffix }}
+          name: levelz-kt v${{ env.VERSION }}${{ github.event.inputs.suffix }}
+          body: ${{ steps.changelog.outputs.changelog || github.event.inputs.changelog }}
+          draft: false
+          prerelease: ${{ github.ref_name != 'master' }}

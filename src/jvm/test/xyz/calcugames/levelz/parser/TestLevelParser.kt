@@ -8,7 +8,6 @@ import xyz.calcugames.levelz.coord.Coordinate3D
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-
 class TestLevelParser {
 
     @Test

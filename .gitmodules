@@ -1,3 +1,3 @@
-[submodule "src/commonTest/resources/examples"]
-	path = src/commonTest/resources/examples
+[submodule "src/common/test-resources/examples"]
+	path = src/common/test-resources/examples
 	url = https://github.com/LevelZ-File/examples

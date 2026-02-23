@@ -3,8 +3,6 @@ package xyz.calcugames.levelz.parser
 import xyz.calcugames.levelz.Block
 import xyz.calcugames.levelz.coord.Coordinate2D
 import xyz.calcugames.levelz.coord.Coordinate3D
-import xyz.calcugames.levelz.parser.*
-import xyz.calcugames.levelz.parser.value
 import kotlin.random.Random
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -32,7 +30,7 @@ class TestInternalParser {
 
         assertEquals(setOf(Coordinate2D(0, 0), Coordinate2D(5, 5)), read2DPoints("[0,0]*[5, 5]"))
         assertEquals(
-            setOf(Coordinate2D(0, 0), Coordinate2D(5, 5), Coordinate2D(2.5, 2.5)), 
+            setOf(Coordinate2D(0, 0), Coordinate2D(5, 5), Coordinate2D(2.5, 2.5)),
             read2DPoints("[0,0]*[5, 5]*[2.5, 2.5]")
         )
 
@@ -101,7 +99,12 @@ class TestInternalParser {
 
         assertNotNull(readBlock("{stone,grass,water<value=5>}", Random))
         assertNotNull(readBlock("{wood,grass<value=2,other=4>,water<value=5>}", Random))
-        assertNotNull(readBlock("{cobblestone,grass<value=2,other=4>,water<value=5>,magma<temp=0.3,type=lava,wet=false>,air}", Random))
+        assertNotNull(
+            readBlock(
+                "{cobblestone,grass<value=2,other=4>,water<value=5>,magma<temp=0.3,type=lava,wet=false>,air}",
+                Random
+            )
+        )
     }
 
     @Test

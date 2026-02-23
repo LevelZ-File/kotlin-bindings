@@ -1,4 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import kotlin.apply
 
 plugins {
     kotlin("multiplatform") version "2.3.10"
@@ -8,10 +10,11 @@ plugins {
     jacoco
 }
 
-val v = "0.3.4"
+val v = "0.3.5"
 
 group = "xyz.calcugames"
-version = if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v
+version = "${if (project.hasProperty("snapshot")) "$v-SNAPSHOT" else v}${project.findProperty("suffix")?.toString()?.run { "-${this}" } ?: ""}"
+description = "Kotlin Multiplatform API for the LevelZ File Format"
 
 repositories {
     mavenCentral()
@@ -19,11 +22,16 @@ repositories {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 kotlin {
+    configureSourceSets()
+    applyDefaultHierarchyTemplate()
+    withSourcesJar()
+
     jvm()
     js {
         browser {
@@ -88,6 +96,27 @@ kotlin {
     }
 }
 
+fun KotlinMultiplatformExtension.configureSourceSets() {
+    sourceSets
+        .matching { it.name !in listOf("main", "test") }
+        .all {
+            val srcDir = if ("Test" in name) "test" else "main"
+            val resourcesPrefix = if (name.endsWith("Test")) "test-" else ""
+            val platform = when {
+                (name.endsWith("Main") || name.endsWith("Test")) && "android" !in name -> name.dropLast(4)
+                else -> name.substringBefore(name.first { it.isUpperCase() })
+            }
+
+            kotlin.srcDir("src/$platform/$srcDir")
+            resources.srcDir("src/$platform/${resourcesPrefix}resources")
+            resources.srcDir("src/$platform/generated-resources")
+
+            languageSettings.apply {
+                progressiveMode = true
+            }
+        }
+}
+
 tasks {
     clean {
         delete("kotlin-js-store")
@@ -115,7 +144,6 @@ publishing {
         getByName<MavenPublication>("kotlinMultiplatform") {
             pom {
                 name = "LevelZ Kotlin API"
-                description = "The Kotlin API for LevelZ"
                 url = "https://levelz.calcugames.xyz"
 
                 licenses {

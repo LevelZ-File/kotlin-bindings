@@ -1,7 +1,16 @@
 package xyz.calcugames.levelz.builder
 
-import xyz.calcugames.levelz.*
-import xyz.calcugames.levelz.coord.*
+import xyz.calcugames.levelz.Block
+import xyz.calcugames.levelz.Dimension
+import xyz.calcugames.levelz.Level
+import xyz.calcugames.levelz.Level2D
+import xyz.calcugames.levelz.Level3D
+import xyz.calcugames.levelz.LevelObject
+import xyz.calcugames.levelz.Scroll
+import xyz.calcugames.levelz.coord.Coordinate
+import xyz.calcugames.levelz.coord.Coordinate2D
+import xyz.calcugames.levelz.coord.Coordinate3D
+import xyz.calcugames.levelz.coord.CoordinateMatrix
 
 /**
  * Represents a builder for creating LevelZ Levels.

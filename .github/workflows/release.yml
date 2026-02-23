@@ -1,8 +1,14 @@
 name: Release Project
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+    inputs:
+      changelog:
+        type: string
+        description: 'Changelog to replace the auto-generated one'
+      suffix:
+        type: string
+        description: 'Suffix to append to the version'
+        default: ''
 
 jobs:
   publish:

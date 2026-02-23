@@ -85,6 +85,8 @@ jobs:
       contents: read
       id-token: write
       attestations: write
+      pull-requests: write
+      checks: write
 
     steps:
       - uses: actions/checkout@v6
